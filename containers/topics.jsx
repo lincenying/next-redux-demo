@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import withRedux from 'next-redux-wrapper'
+import {connect} from 'react-redux'
 import Head from 'next/head'
 import ls from 'store2'
 import { Link } from '../routes'
-import initStore from '../store'
 
 import { getTopics } from '../store/reducers/topics'
 
@@ -79,5 +78,5 @@ function mapDispatchToProps(dispatch) {
     return { ...actions, dispatch }
 }
 
-export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(Topics)
+export default connect(mapStateToProps, mapDispatchToProps)(Topics)
 
