@@ -1,9 +1,10 @@
 const express = require('express')
 const next = require('next')
+const routes = require('./routes')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dir: '.', dev })
-const handle = app.getRequestHandler()
+const handle = routes.getRequestHandler(app)
 
 const PORT = process.env.PORT || 3000
 
