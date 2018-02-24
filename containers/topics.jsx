@@ -54,14 +54,6 @@ class Topics extends Component {
                     }
                     <li><a onClick={this.handleLoadMore} href="JavaScript:;">加载下一页</a></li>
                 </ul>
-                <style jsx>{`
-                    .main {
-                        width: 1024px;
-                        margin: 0 auto;
-                        background: #fff;
-                        padding: 20px;
-                    }
-                `}</style>
             </div>
         )
     }

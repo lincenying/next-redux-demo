@@ -1,8 +1,9 @@
 /* eslint-disable no-inline-comments */
 const path = require('path')
+const withLess = require('@zeit/next-less')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 
-module.exports = {
+module.exports = withLess({
     webpack: (config, { dev, isServer }) => {
         const oldEntry = config.entry
         // 浏览器端
@@ -23,7 +24,7 @@ module.exports = {
             // Service Worker
             config.plugins.push(
                 new SWPrecacheWebpackPlugin({
-                    cacheId: 'next-ss',
+                    cacheId: 'next-demo',
                     filepath: './static/sw.js',
                     minify: true,
                     staticFileGlobsIgnorePatterns: [/\.next\//],
@@ -46,4 +47,4 @@ module.exports = {
         }
         return config
     }
-}
+})

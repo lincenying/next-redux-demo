@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 const next = require('next')
 const routes = require('./routes')
@@ -8,8 +9,13 @@ const handle = routes.getRequestHandler(app)
 
 const PORT = process.env.PORT || 3000
 
+const resolve = file => path.resolve(__dirname, file)
+const serve = (path, cache) => express.static(resolve(path), { maxAge: cache && !dev ? 60 * 60 * 24 * 30 : 0 })
+
 app.prepare().then(() => {
     const server = express()
+    server.use('/favicon.ico', serve('./static/favicon.ico'))
+    server.use('/sw.js', serve('./static/sw.js'))
     server.get('/article/:id', (req, res) => {
         return app.render(req, res, '/article', { id: req.params.id })
     })

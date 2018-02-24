@@ -19,7 +19,7 @@ class Article extends Component {
     render() {
         const { item } = this.props
         return (
-            <div className="article">
+            <div className="main">
                 <Head>
                     <title>{item.title}</title>
                 </Head>
@@ -40,12 +40,6 @@ class Article extends Component {
                     h3 {
                         text-align: center;
                     }
-                    .article {
-                        width: 1024px;
-                        margin: 0 auto;
-                        background: #fff;
-                        padding: 20px;
-                    }
                     .article-content {
                         word-wrap: break-word;
                     }
@@ -63,6 +57,9 @@ class Article extends Component {
                 <style jsx global>{`
                     pre {
                         overflow: auto;
+                    }
+                    .article-content img, .reply-item-content img {
+                        max-width: 100%;
                     }
                 `}</style>
             </div>
