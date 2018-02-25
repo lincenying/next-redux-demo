@@ -11,12 +11,12 @@ const initStates = fromJS({
 
 const reducers = {
     ['receiveArticleItem']: (state, action) => {
-        const {data, isLoad} = action
+        const { data, isLoad } = action
         return state.merge({
             data,
             isLoad
         })
-    },
+    }
 }
 
 export const getArticleItem = config => {

@@ -1,13 +1,9 @@
 import { createReducer } from 'redux-immutablejs'
 import { fromJS } from 'immutable'
 
-const initStates = fromJS({
+const initStates = fromJS({})
 
-})
-
-const reducers = {
-
-}
+const reducers = {}
 
 export default createReducer(initStates, reducers)
 
