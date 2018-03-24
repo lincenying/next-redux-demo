@@ -13,8 +13,8 @@ class Topics extends Component {
     static async getInitialProps({ req, store, isServer }) {
         if (isServer) {
             api.setCookies(req.headers.cookie)
+            await store.dispatch(getTopics({ page: 1, cache: true }))
         }
-        await store.dispatch(getTopics({ page: 1, cache: true }))
     }
     constructor(props) {
         super(props)
