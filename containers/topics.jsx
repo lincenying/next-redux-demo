@@ -3,13 +3,18 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Head from 'next/head'
 import ls from 'store2'
-import { Link } from '../routes'
+import { Link } from '@/routes'
+import api from '~api'
 
-import { getTopics } from '../store/reducers/topics'
+import '@/assets/less/index.less'
+import { getTopics } from '@/store/reducers/topics'
 
 class Topics extends Component {
-    static async getInitialProps({ store, isServer }) {
-        if (isServer) await store.dispatch(getTopics({ page: 1 }))
+    static async getInitialProps({ req, store, isServer }) {
+        if (isServer) {
+            api.setCookies(req.headers.cookie)
+        }
+        await store.dispatch(getTopics({ page: 1, cache: true }))
     }
     constructor(props) {
         super(props)
@@ -35,26 +40,14 @@ class Topics extends Component {
         await dispatch(getTopics({ page: page + 1 }))
     }
     onScroll() {
-        const scrollTop = Math.max(
-            window.pageYOffset,
-            document.documentElement.scrollTop,
-            document.body.scrollTop
-        )
+        const scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
         const path = this.props.url.pathname
         if (path && scrollTop) ls.set(path, scrollTop)
     }
     render() {
         const { lists } = this.props
         return (
-            <div
-                className="main"
-                style={{
-                    width: '1024px',
-                    margin: '0 auto',
-                    background: '#fff',
-                    padding: '20px'
-                }}
-            >
+            <div className="main">
                 <Head>
                     <title>首页</title>
                 </Head>
@@ -82,7 +75,7 @@ class Topics extends Component {
 function mapStateToProps(state) {
     return {
         lists: state.topics.toJS().data,
-        page: state.topics.toJS().page
+        page: state.topics.toJS().page,
     }
 }
 function mapDispatchToProps(dispatch) {

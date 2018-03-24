@@ -5,19 +5,18 @@ import { errConfig } from './global'
 
 const initStates = fromJS({
     data: [],
-    page: 1
+    page: 1,
 })
 
 const reducers = {
     ['receiveTopics']: (state, action) => {
         const { list, page } = action
-        const lists =
-            page === 1 ? [].concat(list) : state.toJS().data.concat(list)
+        const lists = page === 1 ? [].concat(list) : state.toJS().data.concat(list)
         return state.merge({
             data: lists,
-            page
+            page,
         })
-    }
+    },
 }
 
 export const getTopics = config => {
@@ -27,7 +26,7 @@ export const getTopics = config => {
             return dispatch({
                 type: 'receiveTopics',
                 list: data,
-                ...config
+                ...config,
             })
         }
         return dispatch(errConfig)

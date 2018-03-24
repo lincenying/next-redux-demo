@@ -4,15 +4,20 @@ import { connect } from 'react-redux'
 import Link from 'next/link'
 import Head from 'next/head'
 
-import { getArticleItem } from '../store/reducers/article'
+import api from '~api'
+import { getArticleItem } from '@/store/reducers/article'
 
 class Article extends Component {
-    static async getInitialProps(ctx) {
-        await ctx.store.dispatch(getArticleItem({ id: ctx.query.id }))
+    static async getInitialProps({ req, store, isServer, query }) {
+        if (isServer) {
+            api.setCookies(req.headers.cookie)
+        }
+        await store.dispatch(getArticleItem({ id: query.id, cache: true }))
     }
     constructor(props) {
         super(props)
     }
+    async componentDidMount() {}
     shouldComponentUpdate() {
         return true
     }
@@ -29,27 +34,24 @@ class Article extends Component {
                         <a>返回列表</a>
                     </Link>
                 </p>
-                <div
-                    className="article-content"
-                    dangerouslySetInnerHTML={{ __html: item.content }}
-                />
+                <div className="article-content" dangerouslySetInnerHTML={{ __html: item.content }} />
                 <div className="reply">
-                    {item.replies.map(sub_item => {
-                        return (
-                            <div key={sub_item.id} className="reply-item">
-                                <h5>
-                                    {sub_item.author.loginname}:{' '}
-                                    <span>[{item.create_at}]</span>
-                                </h5>
-                                <div
-                                    className="reply-item-content"
-                                    dangerouslySetInnerHTML={{
-                                        __html: sub_item.content,
-                                    }}
-                                />
-                            </div>
-                        )
-                    })}
+                    {item.replies &&
+                        item.replies.map(sub_item => {
+                            return (
+                                <div key={sub_item.id} className="reply-item">
+                                    <h5>
+                                        {sub_item.author.loginname}: <span>[{item.create_at}]</span>
+                                    </h5>
+                                    <div
+                                        className="reply-item-content"
+                                        dangerouslySetInnerHTML={{
+                                            __html: sub_item.content,
+                                        }}
+                                    />
+                                </div>
+                            )
+                        })}
                 </div>
                 <style jsx>{`
                     h3 {

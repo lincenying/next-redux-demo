@@ -29,22 +29,22 @@ module.exports = withLess({
                     minify: true,
                     staticFileGlobsIgnorePatterns: [/\.next\//],
                     staticFileGlobs: [
-                        'static/**/*' // Precache all static files by default
+                        'static/**/*', // Precache all static files by default
                     ],
                     runtimeCaching: [
                         // Example with different handlers
                         {
                             handler: 'fastest',
-                            urlPattern: /[.](png|jpg|css)/
+                            urlPattern: /[.](png|jpg|css)/,
                         },
                         {
                             handler: 'networkFirst',
-                            urlPattern: /^http.*/ //cache all files
-                        }
-                    ]
-                })
+                            urlPattern: /^http.*/, //cache all files
+                        },
+                    ],
+                }),
             )
         }
         return config
-    }
+    },
 })

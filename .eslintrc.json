@@ -1,3 +1,9 @@
 {
-    "extends": "lcy-react"
+    "extends": ["lcy-react", "prettier"],
+    "plugins": ["prettier"],
+    "rules": {
+        "prettier/prettier": "error",
+        "no-irregular-whitespace": 0,
+        "react/jsx-closing-bracket-location": 0
+    }
 }
