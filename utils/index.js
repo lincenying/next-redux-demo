@@ -46,3 +46,13 @@ export const strlen = str => {
     }
     return realLength
 }
+export const sleep = ms => {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+export const parseCookie = cookies => {
+    let cookie = ''
+    Object.keys(cookies).forEach(item => {
+        cookie += item + '=' + cookies[item] + '; '
+    })
+    return cookie
+}

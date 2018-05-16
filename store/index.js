@@ -6,6 +6,7 @@ import reducer from './reducers'
 
 const initStore = initialState =>
     createStore(reducer, initialState, composeWithDevTools(applyMiddleware(thunkMiddleware)))
+
 export default initStore
 
 export const reduxPage = comp => withRedux(initStore)(comp)

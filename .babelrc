@@ -1,7 +1,11 @@
 {
-    "presets": ["next/babel", "stage-0"],
-    "plugins": ["transform-decorators-legacy"],
-    "env": {
-        "debug": true
-    }
+    "presets": [
+        "next/babel",
+        [
+            "@babel/preset-stage-0",
+            {
+                "decoratorsLegacy": true
+            }
+        ]
+    ]
 }

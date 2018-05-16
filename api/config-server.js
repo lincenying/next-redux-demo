@@ -12,9 +12,9 @@ if (process.__API__) {
         cached: lruCache({
             max: 1000,
             // 缓存时间 5分钟
-            maxAge: 1000 * 60 * 5,
+            maxAge: 1000 * 60 * 5
         }),
-        cachedItem: {},
+        cachedItem: {}
     }
 }
 

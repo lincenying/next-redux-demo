@@ -2,52 +2,17 @@ import axios from 'axios'
 import qs from 'qs'
 import md5 from 'md5'
 import config from './config-server'
-const trimStr = str => {
-    return str.replace(/(^\s*)|(\s*$)/g, '')
-}
-const parseCookie = cookies => {
-    let cookie = ''
-    Object.keys(cookies).forEach(item => {
-        cookie += item + '=' + cookies[item] + '; '
-    })
-    return cookie
-}
+import { parseCookie } from '../utils'
 
 export default {
-    api: null,
-    cookies: {},
-    setCookies(value) {
-        if (typeof value === 'string') {
-            const arr = value.split(';')
-            const cookies = {}
-            arr.forEach(item => {
-                const tmp = item.split('=')
-                cookies[trimStr(tmp[0])] = trimStr(tmp[1])
-            })
-            this.cookies = cookies
-        } else if (typeof value === 'object') {
-            this.cookies =
-                (value && {
-                    ...value,
-                }) ||
-                {}
-            value = (value && parseCookie(value)) || ''
-        } else {
-            this.cookies = {}
-            value = ''
-        }
-        this.api = axios.create({
-            baseURL: config.api,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                cookie: value,
-            },
-            timeout: config.timeout,
-        })
-    },
-    post(url, data) {
-        if (!this.api) this.setCookies()
-        const cookies = this.cookies
+    api: axios.create({
+        baseURL: config.api,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        timeout: config.timeout
+    }),
+    post(url, data, cookies = {}) {
         const username = cookies.username || ''
         const key = md5(url + JSON.stringify(data) + username)
         if (config.cached && data.cache && config.cached.has(key)) {
@@ -59,15 +24,14 @@ export default {
             data: qs.stringify(data),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            },
+                cookie: parseCookie(cookies)
+            }
         }).then(res => {
             if (config.cached && data.cache) config.cached.set(key, res)
             return res
         })
     },
-    get(url, params) {
-        if (!this.api) this.setCookies()
-        const cookies = this.cookies
+    async get(url, params, cookies = {}) {
         const username = cookies.username || ''
         const key = md5(url + JSON.stringify(params) + username)
         if (config.cached && params.cache && config.cached.has(key)) {
@@ -77,9 +41,12 @@ export default {
             method: 'get',
             url,
             params,
+            headers: {
+                cookie: parseCookie(cookies)
+            }
         }).then(res => {
             if (config.cached && params.cache) config.cached.set(key, res)
             return res
         })
-    },
+    }
 }

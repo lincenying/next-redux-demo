@@ -6,7 +6,7 @@ import { errConfig } from './global'
 const initStates = fromJS({
     data: {},
     pathname: '',
-    isLoad: false,
+    isLoad: false
 })
 
 const reducers = {
@@ -14,19 +14,21 @@ const reducers = {
         const { data, isLoad } = action
         return state.merge({
             data,
-            isLoad,
+            isLoad
         })
-    },
+    }
 }
 
-export const getArticleItem = config => {
+export const getArticleItem = (config, cookies) => {
     return async dispatch => {
-        const { data: { success, data } } = await api.get('topic/' + config.id, { cache: config.cache })
+        const {
+            data: { success, data }
+        } = await api.get('topic/' + config.id, { cache: config.cache }, cookies)
         if (success) {
             return dispatch({
                 type: 'receiveArticleItem',
                 data,
-                isLoad: true,
+                isLoad: true
             })
         }
         return dispatch(errConfig)

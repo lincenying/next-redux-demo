@@ -5,7 +5,7 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 
 module.exports = withLess({
     webpack: (config, { dev, isServer }) => {
-        const oldEntry = config.entry
+        // const oldEntry = config.entry
         // 浏览器端
         if (!isServer) {
             config.resolve.alias['~api'] = path.join(__dirname, 'api/index-client.js')
@@ -13,12 +13,15 @@ module.exports = withLess({
             config.resolve.alias['~api'] = path.join(__dirname, 'api/index-server.js')
         }
         config.resolve.alias['@'] = path.join(__dirname)
-        config.entry = () =>
-            oldEntry().then(entry => {
-                if (entry['main.js']) entry['main.js'].push(path.resolve('./utils/offline'))
-                return entry
-            })
-
+        // config.entry = () =>
+        //     oldEntry().then(entry => {
+        //         if (entry['main.js']) entry['main.js'].push(path.resolve('./utils/offline'))
+        //         return entry
+        //     })
+        // config.node = {
+        //     fs: 'empty',
+        //     child_process: 'empty'
+        // }
         /* Enable only in Production */
         if (!dev) {
             // Service Worker
@@ -29,22 +32,22 @@ module.exports = withLess({
                     minify: true,
                     staticFileGlobsIgnorePatterns: [/\.next\//],
                     staticFileGlobs: [
-                        'static/**/*', // Precache all static files by default
+                        'static/**/*' // Precache all static files by default
                     ],
                     runtimeCaching: [
                         // Example with different handlers
                         {
                             handler: 'fastest',
-                            urlPattern: /[.](png|jpg|css)/,
+                            urlPattern: /[.](png|jpg|css)/
                         },
                         {
                             handler: 'networkFirst',
-                            urlPattern: /^http.*/, //cache all files
-                        },
-                    ],
-                }),
+                            urlPattern: /^http.*/ //cache all files
+                        }
+                    ]
+                })
             )
         }
         return config
-    },
+    }
 })

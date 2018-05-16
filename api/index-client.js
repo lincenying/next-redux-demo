@@ -9,7 +9,7 @@ axios.interceptors.request.use(
     },
     error => {
         return Promise.reject(error)
-    },
+    }
 )
 
 axios.interceptors.response.use(response => response, error => Promise.resolve(error.response))
@@ -47,8 +47,8 @@ export default {
             timeout: config.timeout,
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            },
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            }
         })
         // }).then(checkStatus).then(checkCode)
     },
@@ -59,9 +59,9 @@ export default {
             params,
             timeout: config.timeout,
             headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-            },
+                'X-Requested-With': 'XMLHttpRequest'
+            }
         })
         // }).then(checkStatus).then(checkCode)
-    },
+    }
 }

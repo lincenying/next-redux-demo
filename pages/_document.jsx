@@ -1,10 +1,10 @@
 import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
-import { readFileSync } from 'fs'
 
 let version = ''
 
 if (process.env.NODE_ENV === 'production') {
+    const readFileSync = require('fs').readFileSync
     version = `?v=${readFileSync(`${process.cwd()}/.next/BUILD_ID`)}`
 }
 

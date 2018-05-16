@@ -9,5 +9,5 @@ export default createReducer(initStates, reducers)
 
 export const errConfig = {
     type: 'error',
-    content: 'api 接口错误',
+    content: 'api 接口错误'
 }

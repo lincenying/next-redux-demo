@@ -5,7 +5,7 @@ import { errConfig } from './global'
 
 const initStates = fromJS({
     data: [],
-    page: 1,
+    page: 1
 })
 
 const reducers = {
@@ -14,19 +14,21 @@ const reducers = {
         const lists = page === 1 ? [].concat(list) : state.toJS().data.concat(list)
         return state.merge({
             data: lists,
-            page,
+            page
         })
-    },
+    }
 }
 
-export const getTopics = config => {
+export const getTopics = (config, cookies) => {
     return async dispatch => {
-        const { data: { success, data } } = await api.get('topics', config)
+        const {
+            data: { success, data }
+        } = await api.get('topics', config, cookies)
         if (success === true) {
             return dispatch({
                 type: 'receiveTopics',
                 list: data,
-                ...config,
+                ...config
             })
         }
         return dispatch(errConfig)
