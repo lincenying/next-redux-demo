@@ -4485,9 +4485,9 @@ next-redux-wrapper@^2.0.0-beta.6:
   dependencies:
     "@babel/runtime" "^7.0.0-beta.42"
 
-next-routes@^1.4.1:
-  version "1.4.1"
-  resolved "http://registry.npm.taobao.org/next-routes/download/next-routes-1.4.1.tgz#740e3c02c4c0435ce68a5c6f877412fe8686402b"
+next-routes@^1.4.2:
+  version "1.4.2"
+  resolved "http://registry.npm.taobao.org/next-routes/download/next-routes-1.4.2.tgz#736a382579a792ea69f35ae70b449acdfefa7944"
   dependencies:
     path-to-regexp "^2.1.0"
 
@@ -4495,9 +4495,9 @@ next-tick@1:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/next-tick/download/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
 
-next@6.0.2:
-  version "6.0.2"
-  resolved "http://registry.npm.taobao.org/next/download/next-6.0.2.tgz#d72525eb725ed1aa85129bd2c1e67226e2690d5c"
+next@6.0.3:
+  version "6.0.3"
+  resolved "http://registry.npm.taobao.org/next/download/next-6.0.3.tgz#b759fde2ec4864f92116cee4fcd805aaf285136c"
   dependencies:
     "@babel/core" "7.0.0-beta.42"
     "@babel/plugin-proposal-class-properties" "7.0.0-beta.42"
@@ -5455,9 +5455,9 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-dom@^16.3.2:
-  version "16.3.2"
-  resolved "http://registry.npm.taobao.org/react-dom/download/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
+react-dom@^16.4.0:
+  version "16.4.0"
+  resolved "http://registry.npm.taobao.org/react-dom/download/react-dom-16.4.0.tgz#099f067dd5827ce36a29eaf9a6cdc7cbf6216b1e"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -5490,9 +5490,9 @@ react-redux@^5.0.7:
     loose-envify "^1.1.0"
     prop-types "^15.6.0"
 
-react@^16.3.2:
-  version "16.3.2"
-  resolved "http://registry.npm.taobao.org/react/download/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
+react@^16.4.0:
+  version "16.4.0"
+  resolved "http://registry.npm.taobao.org/react/download/react-16.4.0.tgz#402c2db83335336fba1962c08b98c6272617d585"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
