@@ -21,9 +21,7 @@ const reducers = {
 
 export const getTopics = (config, cookies) => {
     return async dispatch => {
-        const {
-            data: { success, data }
-        } = await api.get('topics', config, cookies)
+        const { success, data } = await api.get('topics', config, cookies)
         if (success === true) {
             return dispatch({
                 type: 'receiveTopics',

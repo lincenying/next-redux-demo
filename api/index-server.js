@@ -16,7 +16,8 @@ export default {
         const username = cookies.username || ''
         const key = md5(url + JSON.stringify(data) + username)
         if (config.cached && data.cache && config.cached.has(key)) {
-            return Promise.resolve(config.cached.get(key))
+            const res = config.cached.get(key)
+            return Promise.resolve(res && res.data)
         }
         return this.api({
             method: 'post',
@@ -28,14 +29,15 @@ export default {
             }
         }).then(res => {
             if (config.cached && data.cache) config.cached.set(key, res)
-            return res
+            return res && res.data
         })
     },
     async get(url, params, cookies = {}) {
         const username = cookies.username || ''
         const key = md5(url + JSON.stringify(params) + username)
         if (config.cached && params.cache && config.cached.has(key)) {
-            return Promise.resolve(config.cached.get(key))
+            const res = config.cached.get(key)
+            return Promise.resolve(res && res.data)
         }
         return this.api({
             method: 'get',
@@ -46,7 +48,7 @@ export default {
             }
         }).then(res => {
             if (config.cached && params.cache) config.cached.set(key, res)
-            return res
+            return res && res.data
         })
     }
 }

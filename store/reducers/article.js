@@ -21,9 +21,7 @@ const reducers = {
 
 export const getArticleItem = (config, cookies) => {
     return async dispatch => {
-        const {
-            data: { success, data }
-        } = await api.get('topic/' + config.id, { cache: config.cache }, cookies)
+        const { success, data } = await api.get('topic/' + config.id, { cache: config.cache }, cookies)
         if (success) {
             return dispatch({
                 type: 'receiveArticleItem',
