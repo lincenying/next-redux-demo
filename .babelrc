@@ -1,10 +1,21 @@
 {
     "presets": [
-        "next/babel",
+        ["next/babel", {
+            "class-properties": {
+                "loose": true
+            },
+            "styled-jsx": {
+                "plugins": ["styled-jsx-plugin-less"]
+            }
+        }]
+    ],
+    "plugins": [
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
         [
-            "@babel/preset-stage-0",
+            "import",
             {
-                "decoratorsLegacy": true
+                "libraryName": "antd",
+                "style": "css"
             }
         ]
     ]

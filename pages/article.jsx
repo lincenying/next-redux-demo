@@ -7,6 +7,8 @@ import Head from 'next/head'
 
 import { getArticleItem } from '@/store/reducers/article'
 
+import '@/assets/less/index.less'
+
 class Article extends Component {
     static async getInitialProps({ req, store, isServer, query }) {
         const cookies = isServer ? req.headers.cookie : null
@@ -93,4 +95,7 @@ function mapDispatchToProps(dispatch) {
     return { ...actions, dispatch }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Article)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Article)

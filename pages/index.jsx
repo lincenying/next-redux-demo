@@ -6,8 +6,9 @@ import Router from 'next/router'
 import ls from 'store2'
 import { Link } from '@/routes'
 
-import '@/assets/less/index.less'
 import { getTopics } from '@/store/reducers/topics'
+
+import '@/assets/less/index.less'
 
 class Topics extends Component {
     static async getInitialProps({ req, store, isServer }) {
@@ -83,4 +84,7 @@ function mapDispatchToProps(dispatch) {
     return { ...actions, dispatch }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Topics)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Topics)
