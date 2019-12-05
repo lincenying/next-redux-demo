@@ -4,11 +4,11 @@ next.js + redux + redux-thunk + express demo
 
 development server:
 ```sh
-yarn dev
+yarn serve
 ```
 or
 ```sh
-npm run dev
+npm run serve
 ```
 
 production build:

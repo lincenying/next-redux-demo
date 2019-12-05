@@ -1,3 +1,3 @@
 build/*.js
-static/**/*.js
+public/static/**/*.js
 .nuxt/**/*.js

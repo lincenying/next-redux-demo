@@ -8,7 +8,7 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dir: '.', dev })
 const handle = routes.getRequestHandler(app)
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 
 const resolve = file => path.resolve(__dirname, file)
 const serve = (path, cache) => express.static(resolve(path), { maxAge: cache && !dev ? 60 * 60 * 24 * 30 : 0 })
@@ -16,8 +16,8 @@ const serve = (path, cache) => express.static(resolve(path), { maxAge: cache && 
 app.prepare().then(() => {
     const server = express()
     server.use(cookieParser())
-    server.use('/favicon.ico', serve('./static/favicon.ico'))
-    server.use('/sw.js', serve('./static/sw.js'))
+    server.use('/favicon.ico', serve('./public/tatic/favicon.ico'))
+    server.use('/sw.js', serve('./public/static/sw.js'))
     server.get('/article/:id', (req, res) => {
         return app.render(req, res, '/article', { id: req.params.id })
     })

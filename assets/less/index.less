@@ -1,6 +1,38 @@
+body {
+    height: auto !important;
+    background: #eee !important;
+}
 .main {
     width: 1024px;
     margin: 0 auto;
-    background: #fff;
     padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 5px #999;
+    ul {
+        li {
+            list-style: none;
+            padding: 10px 0;
+            a {
+                display: inline-block;
+                padding-left: 10px;
+            }
+            &.page {
+                text-align: center;
+            }
+        }
+    }
+}
+
+.article-content img,
+.reply-item-content img {
+    max-width: 100%;
+}
+
+.reply-item {
+    h5 {
+        span {
+            font-weight: 400;
+            font-size: 12px;
+        }
+    }
 }
