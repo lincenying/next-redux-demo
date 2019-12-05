@@ -9,6 +9,12 @@ import { getArticleItem } from '@/store/reducers/article'
 
 import '@/assets/less/index.less'
 
+@connect(
+    state => ({
+        item: state.article.toJS().data
+    }),
+    dispatch => ({ ...bindActionCreators({ getArticleItem }, dispatch), dispatch })
+)
 class Article extends Component {
     static async getInitialProps({ req, store, isServer, query }) {
         const cookies = isServer ? req.headers.cookie : null
@@ -64,11 +70,8 @@ class Article extends Component {
                         border-top: 1px solid #ccc;
                     }
                     .reply-item {
+                        padding-top: 8px;
                         border-bottom: 1px dashed #ccc;
-                    }
-                    .reply-item h5 span {
-                        font-weight: 400;
-                        font-size: 12px;
                     }
                 `}</style>
                 <style jsx global>{`
@@ -85,17 +88,4 @@ class Article extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        item: state.article.toJS().data
-    }
-}
-function mapDispatchToProps(dispatch) {
-    const actions = bindActionCreators({ getArticleItem }, dispatch)
-    return { ...actions, dispatch }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Article)
+export default Article

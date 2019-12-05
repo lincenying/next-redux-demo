@@ -4,12 +4,21 @@ import { connect } from 'react-redux'
 import Head from 'next/head'
 import Router from 'next/router'
 import ls from 'store2'
+import { Button, Avatar } from 'antd'
+
 import { Link } from '@/routes'
 
 import { getTopics } from '@/store/reducers/topics'
 
 import '@/assets/less/index.less'
 
+@connect(
+    state => ({
+        lists: state.topics.toJS().data,
+        page: state.topics.toJS().page
+    }),
+    dispatch => ({ ...bindActionCreators({ getTopics }, dispatch), dispatch })
+)
 class Topics extends Component {
     static async getInitialProps({ req, store, isServer }) {
         const cookies = isServer ? req.headers.cookie : null
@@ -19,6 +28,9 @@ class Topics extends Component {
     }
     constructor(props) {
         super(props)
+        this.state = {
+            loading: false
+        }
         this.handleLoadMore = this.handleLoadMore.bind(this)
         this.onScroll = this.onScroll.bind(this)
     }
@@ -38,7 +50,9 @@ class Topics extends Component {
     }
     async handleLoadMore() {
         const { page, dispatch } = this.props
+        this.setState({ loading: true })
         await dispatch(getTopics({ page: page + 1 }))
+        this.setState({ loading: false })
     }
     onScroll() {
         const scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
@@ -56,16 +70,17 @@ class Topics extends Component {
                     {lists.map(item => {
                         return (
                             <li key={item.id}>
+                                <Avatar src={item.author.avatar_url} />
                                 <Link route="article" params={{ id: item.id }}>
                                     <a>{item.title}</a>
                                 </Link>
                             </li>
                         )
                     })}
-                    <li>
-                        <a onClick={this.handleLoadMore} href="JavaScript:;">
+                    <li className="page">
+                        <Button type="primary" loading={this.state.loading} onClick={this.handleLoadMore}>
                             加载下一页
-                        </a>
+                        </Button>
                     </li>
                 </ul>
             </div>
@@ -73,18 +88,4 @@ class Topics extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        lists: state.topics.toJS().data,
-        page: state.topics.toJS().page
-    }
-}
-function mapDispatchToProps(dispatch) {
-    const actions = bindActionCreators({ getTopics }, dispatch)
-    return { ...actions, dispatch }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Topics)
+export default Topics
