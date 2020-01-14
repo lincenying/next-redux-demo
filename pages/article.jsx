@@ -1,13 +1,10 @@
-import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-
-import Link from 'next/link'
 import Head from 'next/head'
-
-import { getArticleItem } from '@/store/reducers/article'
-
-import '@/assets/less/index.less'
+import Link from 'next/link'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import '~/assets/less/index.less'
+import { getArticleItem } from '~/store/reducers/article'
 
 @connect(
     state => ({
@@ -47,7 +44,7 @@ class Article extends Component {
                             return (
                                 <div key={sub_item.id} className="reply-item">
                                     <h5>
-                                        {sub_item.author.loginname}: <span>[{item.create_at}]</span>
+                                        {sub_item?.author?.loginname}: <span>[{item.create_at}]</span>
                                     </h5>
                                     <div
                                         className="reply-item-content"

@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-filename-extension */
+import withRedux from 'next-redux-wrapper'
+import App from 'next/app'
 import React from 'react'
 import { Provider } from 'react-redux'
-import App from 'next/app'
-import withRedux from 'next-redux-wrapper'
-import store from '@/store'
-import '@/utils/offline'
+import store from '~/store'
+import '~/utils/offline'
 
 class MyApp extends App {
     static async getInitialProps({ Component, ctx }) {
