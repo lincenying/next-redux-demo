@@ -17,6 +17,7 @@ const css = withCss({
         } else {
             config.resolve.alias['~api'] = path.join(__dirname, 'api/index-server.js')
         }
+        config.resolve.alias['~'] = path.join(__dirname)
         config.resolve.alias['@'] = path.join(__dirname)
 
         if (isServer) {

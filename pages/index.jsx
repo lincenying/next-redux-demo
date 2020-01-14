@@ -1,16 +1,13 @@
-import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import { Avatar, Button } from 'antd'
 import Head from 'next/head'
 import Router from 'next/router'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import ls from 'store2'
-import { Button, Avatar } from 'antd'
-
-import { Link } from '@/routes'
-
-import { getTopics } from '@/store/reducers/topics'
-
-import '@/assets/less/index.less'
+import '~/assets/less/index.less'
+import { Link } from '~/routes'
+import { getTopics } from '~/store/reducers/topics'
 
 @connect(
     state => ({
@@ -45,6 +42,9 @@ class Topics extends Component {
         }
         window.addEventListener('scroll', this.onScroll)
     }
+    shouldComponentUpdate() {
+        return true
+    }
     componentWillUnmount() {
         window.removeEventListener('scroll', this.onScroll)
     }
@@ -70,7 +70,7 @@ class Topics extends Component {
                     {lists.map(item => {
                         return (
                             <li key={item.id}>
-                                <Avatar src={item.author.avatar_url} />
+                                <Avatar src={item?.author?.avatar_url} />
                                 <Link route="article" params={{ id: item.id }}>
                                     <a>{item.title}</a>
                                 </Link>
