@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import '~/assets/less/index.less'
+import '~/assets/scss/index.scss'
 import { getArticleItem } from '~/store/reducers/article'
 
 @connect(

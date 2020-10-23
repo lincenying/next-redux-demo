@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import ls from 'store2'
-import '~/assets/less/index.less'
+import '~/assets/scss/index.scss'
 import { Link } from '~/routes'
 import { getTopics } from '~/store/reducers/topics'
 
