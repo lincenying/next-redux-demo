@@ -5796,10 +5796,10 @@ neo-async@^2.5.0, neo-async@^2.6.1, neo-async@^2.6.2:
   resolved "https://registry.npm.taobao.org/neo-async/download/neo-async-2.6.2.tgz?cache=0&sync_timestamp=1594317437265&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fneo-async%2Fdownload%2Fneo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha1-tKr7k+OustgXTKU88WOrfXMIMF8=
 
-next-redux-wrapper@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.npm.taobao.org/next-redux-wrapper/download/next-redux-wrapper-5.0.0.tgz#0f36f94ea00581fbdc94f2405594f6360beb08dc"
-  integrity sha1-Dzb5TqAFgfvclPJAVZT2NgvrCNw=
+next-redux-wrapper@6.0.2:
+  version "6.0.2"
+  resolved "https://registry.npm.taobao.org/next-redux-wrapper/download/next-redux-wrapper-6.0.2.tgz#b8dcd214e7b5cedd7a2a611ddb60422384d24374"
+  integrity sha1-uNzSFOe1zt16KmEd22BCI4TSQ3Q=
 
 next-routes@^1.4.2:
   version "1.4.2"

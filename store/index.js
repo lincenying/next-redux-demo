@@ -1,11 +1,11 @@
-import { createStore, applyMiddleware } from 'redux'
-import thunkMiddleware from 'redux-thunk'
+import { createWrapper } from 'next-redux-wrapper'
+import { applyMiddleware, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import withRedux from 'next-redux-wrapper'
+import thunkMiddleware from 'redux-thunk'
 import reducer from './reducers'
 
-const initStore = initialState => createStore(reducer, initialState, composeWithDevTools(applyMiddleware(thunkMiddleware)))
+const makeStore = () => createStore(reducer, composeWithDevTools(applyMiddleware(thunkMiddleware)))
 
-export default initStore
+export default makeStore
 
-export const reduxPage = comp => withRedux(initStore)(comp)
+export const wrapper = createWrapper(makeStore)

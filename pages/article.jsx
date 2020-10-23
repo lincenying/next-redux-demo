@@ -13,9 +13,10 @@ import { getArticleItem } from '~/store/reducers/article'
     dispatch => ({ ...bindActionCreators({ getArticleItem }, dispatch), dispatch })
 )
 class Article extends Component {
-    static async getInitialProps({ req, store, isServer, query }) {
-        const cookies = isServer ? req.headers.cookie : null
+    static async getInitialProps({ req, store, query }) {
+        const cookies = req ? req.headers.cookie : null
         await store.dispatch(getArticleItem({ id: query.id, cache: true }, cookies))
+        return {}
     }
     constructor(props) {
         super(props)

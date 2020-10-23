@@ -1,8 +1,8 @@
 import axios from 'axios'
-import qs from 'qs'
 import md5 from 'md5'
-import config from './config-server'
+import qs from 'qs'
 import { parseCookie } from '../utils'
+import config from './config-server'
 
 export default {
     api: axios.create({

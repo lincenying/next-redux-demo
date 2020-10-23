@@ -17,11 +17,10 @@ import { getTopics } from '~/store/reducers/topics'
     dispatch => ({ ...bindActionCreators({ getTopics }, dispatch), dispatch })
 )
 class Topics extends Component {
-    static async getInitialProps({ req, store, isServer }) {
-        const cookies = isServer ? req.headers.cookie : null
-        if (isServer) {
-            await store.dispatch(getTopics({ page: 1, cache: true }, cookies))
-        }
+    static async getInitialProps({ req, store }) {
+        const cookies = req ? req.headers.cookie : null
+        await store.dispatch(getTopics({ page: 1, cache: true }, cookies))
+        return {}
     }
     constructor(props) {
         super(props)

@@ -1,5 +1,5 @@
-import { createReducer } from 'redux-immutablejs'
 import { fromJS } from 'immutable'
+import { createReducer } from 'redux-immutablejs'
 import api from '~api'
 import { errConfig } from './global'
 
