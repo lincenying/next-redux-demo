@@ -1,9 +1,14 @@
-import { createReducer } from 'redux-immutablejs'
 import { fromJS } from 'immutable'
+import { HYDRATE } from 'next-redux-wrapper'
+import { createReducer } from 'redux-immutablejs'
 
 const initStates = fromJS({})
 
-const reducers = {}
+const reducers = {
+    [HYDRATE]: (state, action) => {
+        return state.merge(action.payload.global)
+    }
+}
 
 export default createReducer(initStates, reducers)
 

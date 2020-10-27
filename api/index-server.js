@@ -13,10 +13,12 @@ export default {
         timeout: config.timeout
     }),
     post(url, data, cookies = {}) {
+        console.log('from server')
         const username = cookies.username || ''
         const key = md5(url + JSON.stringify(data) + username)
         if (config.cached && data.cache && config.cached.has(key)) {
             const res = config.cached.get(key)
+            console.log('url: ' + url + ' 命中缓存')
             return Promise.resolve(res && res.data)
         }
         return this.api({
@@ -29,14 +31,17 @@ export default {
             }
         }).then(res => {
             if (config.cached && data.cache) config.cached.set(key, res)
+            console.log('url: ' + url + ' 直接读取')
             return res && res.data
         })
     },
     async get(url, params, cookies = {}) {
+        console.log('from server')
         const username = cookies.username || ''
         const key = md5(url + JSON.stringify(params) + username)
         if (config.cached && params.cache && config.cached.has(key)) {
             const res = config.cached.get(key)
+            console.log('url: ' + url + ' 命中缓存')
             return Promise.resolve(res && res.data)
         }
         return this.api({
@@ -48,6 +53,7 @@ export default {
             }
         }).then(res => {
             if (config.cached && params.cache) config.cached.set(key, res)
+            console.log('url: ' + url + ' 直接读取')
             return res && res.data
         })
     }

@@ -9,7 +9,7 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dir: '.', dev })
 const handle = routes.getRequestHandler(app)
 
-const PORT = process.env.PORT || 6303
+const PORT = process.env.PORT || 8033
 
 const resolve = file => path.resolve(__dirname, file)
 const serve = (path, cache) => express.static(resolve(path), { maxAge: cache && !dev ? 60 * 60 * 24 * 30 : 0 })
@@ -46,6 +46,7 @@ app.prepare().then(() => {
     })
     server.listen(PORT, err => {
         if (err) throw err
-        console.log(`> App running on port ${PORT}`)
+        console.log(`> App running at:`)
+        console.log(`  - http://localhost:${PORT}/`)
     })
 })

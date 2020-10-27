@@ -5,3 +5,4 @@ public/static/sw.js
 *-error.log
 .DS_Store
 .idea/
+*-port.txt
