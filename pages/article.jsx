@@ -1,10 +1,14 @@
-import Head from 'next/head'
-import Link from 'next/link'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import '~/assets/scss/index.scss'
+
+import Head from 'next/head'
+import Link from 'next/link'
+
+import { Affix } from 'antd'
 import { getArticleItem } from '~/store/reducers/article'
+
+import '~/assets/scss/index.scss'
 
 @connect(
     state => ({
@@ -33,11 +37,13 @@ class Article extends Component {
                     <title>{item.title}</title>
                 </Head>
                 <h3>{item.title}</h3>
-                <p>
-                    <Link href={'/'}>
-                        <a>返回列表</a>
-                    </Link>
-                </p>
+                <Affix offsetTop={20}>
+                    <p>
+                        <Link href={'/'}>
+                            <a>返回列表</a>
+                        </Link>
+                    </p>
+                </Affix>
                 <div className="article-content" dangerouslySetInnerHTML={{ __html: item.content }} />
                 <div className="reply">
                     {item.replies &&

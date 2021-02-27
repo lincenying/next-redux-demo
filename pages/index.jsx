@@ -1,13 +1,17 @@
-import { Avatar, Button } from 'antd'
-import Head from 'next/head'
-import Router from 'next/router'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+
+import Head from 'next/head'
+import Router from 'next/router'
+
 import ls from 'store2'
-import '~/assets/scss/index.scss'
+import { Avatar, Button } from 'antd'
+
 import { Link } from '~/routes'
 import { getTopics } from '~/store/reducers/topics'
+
+import '~/assets/scss/index.scss'
 
 @connect(
     state => ({

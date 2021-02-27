@@ -1,7 +1,9 @@
 /* eslint-disable react/jsx-filename-extension */
+import React from 'react'
+
 import App from 'next/app'
 import Head from 'next/head'
-import React from 'react'
+
 import { wrapper } from '~/store'
 import '~/utils/offline'
 
